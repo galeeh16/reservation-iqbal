@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('article');
             $table->string('status');
             $table->unsignedBigInteger('user_id');
+            $table->dateTime('tanggal_approve_matplan')->nullable();
+            $table->dateTime('tanggal_complete_warehouse')->nullable();
             $table->timestamps();
         });
     }

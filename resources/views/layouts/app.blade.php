@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     {{-- Datatable --}}
     <link rel="stylesheet" href="{{ asset('DataTables/datatables.min.css') }}">
+    {{-- Jquery UI --}}
+    <link rel="stylesheet" href="{{ asset('jquery-ui/jquery-ui.min.css') }}">
 
     <link rel="icon" type="image/png" href="{{ asset('logo.png') }}">
 
@@ -27,7 +29,11 @@
             font-weight: 500 !important;
             font-size: 14px;
         }
-        .table tr td {
+        .table tr td,
+        label.col-form-label,
+        label.form-check-label,
+        .form-control,
+        .form-select {
             font-size: 14px !important;
         }
         .btn.btn-sm {
@@ -98,6 +104,7 @@
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/sweetalert2@11.js') }}"></script>
     <script src="{{ asset('DataTables/datatables.min.js') }}"></script>
+    <script src="{{ asset('jquery-ui/jquery-ui.min.js') }}"></script>
 
     <script>
         feather.replace();
