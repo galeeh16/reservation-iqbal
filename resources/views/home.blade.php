@@ -107,19 +107,19 @@
                             <div class="mb-3 row">
                                 <label class="col-form-label col-lg-3 col-sm-4">Description</label>
                                 <div class="col-lg-9 col-sm-8">
-                                    <input type="text" class="form-control" name="description" id="description">
+                                    <input type="text" class="form-control" name="description" id="description" readonly>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-form-label col-lg-3 col-sm-4">Colour</label>
                                 <div class="col-lg-9 col-sm-8">
-                                    <input type="text" class="form-control" name="colour" id="colour">
+                                    <input type="text" class="form-control" name="colour" id="colour" readonly>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-form-label col-lg-3 col-sm-4">UoM</label>
                                 <div class="col-lg-9 col-sm-8">
-                                    <input type="text" class="form-control" name="uom" id="uom">
+                                    <input type="text" class="form-control" name="uom" id="uom" readonly>
                                 </div>
                             </div>
                         </div>
@@ -179,7 +179,7 @@
                         <th class="text-center">Issue Qty</th>
                         <th class="text-center">Stage & Season</th>
                         <th class="text-center">Information</th>
-                        <th class="text-center"></th>
+                        <th class="text-center">Delete</th>
                     </tr>
                 </thead>
                 <tbody>

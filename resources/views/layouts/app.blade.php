@@ -51,6 +51,9 @@
             margin-top: 1rem  !important;
             padding-top: 0 !important;
         }
+        .form-control:read-only {
+            background-color: #dedede; 
+        }
     </style>
 </head>
 <body class="bg-light">
