@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+    <link rel="icon" type="image/png" href="{{ asset('logo.png') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 
     <style>
@@ -25,15 +26,24 @@
         }
     </style>
 </head>
-<body class="bg-light">
-    <div class="container mt-5 pt-5">
+<body class="bg-light d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="container">
         <div class="row d-flex justify-content-center align-items-center">
             <div class="col-md-6 col-lg-5 col-xs-12">
                 <div class="card border-0 shadow">
                     <div class="card-body p-lg-5 p-md-4 p-xs-3">
-                        <h4 class="mb-5">PT. Panarub Industry</h4>
+                        <div class="d-flex align-items-center mb-5" style="gap: 1rem;">
+                            <div style="width: 45px;">
+                                <img src="{{ asset('logo.png') }}" style="width: 45px;" alt="PT. Panarub">
+                            </div>
+                            <h3 class="">PT. Panarub Industry</h3>
+                        </div>
 
-                        <form action="" method="post" id="form-login">
+                        <div id="error-message">
+
+                        </div>
+
+                        <form method="post" id="form-login" autocomplete="off" spellcheck="false">
                             {{ csrf_field() }}
 
                             <div class="mb-3">
@@ -58,5 +68,42 @@
             </div>
         </div>
     </div>
+
+    <script src="{{ asset('js/jquery-3.6.3.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#form-login').on('submit', function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: '{{ url('login') }}',
+                    type: 'post',
+                    headers: { 'X-CSRF-TOKEN': '{{csrf_token()}}' },
+                    data: {
+                        username: $('#username').val(),
+                        password: $('#password').val()
+                    },
+                    success: function(response) {
+                        $('#error-message').html(`
+                            <div class="alert alert-suuccess">
+                                ${ response.message }
+                            </div>
+                        `);
+
+                        window.location.href = '{{ url('home') }}';
+                    },
+                    error: function(xhr, stat, err) {
+                        if (xhr.status == 401) {
+                            $('#error-message').html(`
+                                <div class="alert alert-danger">
+                                    ${ xhr.responseJSON.message }
+                                </div>
+                            `);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
