@@ -15,13 +15,20 @@ return new class extends Migration
     {
         Schema::create('material_requester', function (Blueprint $table) {
             $table->id();
-            $table->string('material_code');
-            $table->string('material_name');
-            $table->string('description');
-            $table->string('colour');
+            // $table->string('material_code');
+            // $table->string('description');
+            // $table->string('colour');
+            // $table->string('uom');
+            // $table->string('status')->nullable();
+            
+            $table->unsignedInteger('req_qty')->nullable()->default(0);
+            $table->unsignedInteger('issue_qty')->nullable()->default(0);
             $table->string('size');
-            $table->string('uom');
+            $table->string('stage_and_season');
+            $table->unsignedBigInteger('material_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+
         });
     }
 

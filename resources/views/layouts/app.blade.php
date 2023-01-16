@@ -22,6 +22,19 @@
         html, body {
             font-family: 'Poppins', sans-serif;
         }
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+            margin: 0;
+        }
+        .text-danger {
+            font-size: 13px !important;
+        }
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
         .bg-lightblue {
             background-color: #9ddcff;
         }
@@ -35,6 +48,14 @@
         .form-control,
         .form-select {
             font-size: 14px !important;
+        }
+        .form-control:focus,
+        .form-control:active,
+        .form-control.is-invalid:active,
+        .form-control.is-valid:active {
+            box-shadow: none !important;
+            -webkit-box-shadow: none !important;
+            -moz-box-shadow: none !important;
         }
         .btn.btn-sm {
             font-size: 12px !important;
@@ -51,7 +72,7 @@
             margin-top: 1rem  !important;
             padding-top: 0 !important;
         }
-        .form-control:read-only {
+        input.form-control:read-only {
             background-color: #dedede; 
         }
     </style>
@@ -134,8 +155,8 @@
 			Swal.fire('', msg, 'success');
 		}
 
-		function alertError(msg = 'Whoops, something went wrong.') {
-			Swal.fire('', msg, 'error');
+		function alertError(msg = 'Whoops, something went wrong.', type='error') {
+			Swal.fire('', msg, type);
 		}
 
 		function date_format(datetime, hours) {

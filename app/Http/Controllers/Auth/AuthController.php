@@ -41,6 +41,7 @@ class AuthController extends Controller
         session()->put('id', $user->id);
         session()->put('username', $user->username);
         session()->put('name', $user->name);
+        session()->put('role', $user->role);
 
         return response()->json([
             'message' => 'Berhasil login',

@@ -21,7 +21,10 @@ return new class extends Migration
             $table->string('colour');
             $table->string('size');
             $table->string('uom');
+            $table->unsignedInteger('req_qty')->nullable()->default(0);
+            $table->unsignedInteger('issue_qty')->nullable()->default(0);
             $table->string('status')->nullable();
+            $table->string('information')->nullable();
             $table->timestamps();
         });
     }
