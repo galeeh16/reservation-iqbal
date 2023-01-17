@@ -21,6 +21,7 @@
     <style>
         html, body {
             font-family: 'Poppins', sans-serif;
+            font-size: 14px !important;
         }
         /* Chrome, Safari, Edge, Opera */
         input::-webkit-outer-spin-button,
@@ -42,6 +43,12 @@
             font-weight: 500 !important;
             font-size: 14px;
         }
+        .dataTables_info,
+        .dataTables_length,
+        .dataTables_filter,
+        .paginate_button .page-link {
+            font-size: 14px !important;
+        }
         .table tr td,
         label.col-form-label,
         label.form-check-label,
@@ -61,7 +68,7 @@
             font-size: 12px !important;
         }
         .btn {
-            font-size: 14px !important;
+            font-size: 13px !important;
         }
         .dataTables_length, 
         .dataTables_filter {
@@ -82,7 +89,7 @@
     <div class="wrapper">
         <nav class="navbar navbar-expand-lg bg-lightblue border-0 ">
             <div class="container">
-                <a class="navbar-brand d-flex align-items-center" style="gap: 8px;" href="#">
+                <a class="navbar-brand d-flex align-items-center" style="gap: 8px;" href="{{ url('/') }}">
                     <div class="bg-white" style="padding: 0; border-radius: 5px;">
                         <img src="{{ asset('logo.png') }}" style="width: 35px;" alt="PT. Panarub">
                     </div>
@@ -117,6 +124,9 @@
                 </div>
                 <div>
                     <a href="{{ url('warehouse/reservation') }}">Menu Warehouse Reservation</a>
+                </div>
+                <div>
+                    <a href="{{ url('requester/status-reservation') }}">Status Reservation</a>
                 </div>
             </div>
             @yield('content')

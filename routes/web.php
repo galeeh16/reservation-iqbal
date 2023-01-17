@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\Requester\RequesterController;
+use App\Http\Controllers\Requester\StatusReservationController;
 use App\Http\Controllers\Warehouse\ReservationController;
 
 
@@ -22,6 +23,10 @@ Route::post('/requester/search-code-item', [RequesterController::class, 'searchC
 Route::post('/requester/add-material', [RequesterController::class, 'addMaterial']);
 Route::put('/requester/edit-material/{id_material}', [RequesterController::class, 'updateMaterial']);
 Route::delete('/requester/delete-material/{id_material}', [RequesterController::class, 'deleteMaterial']);
+Route::post('/requester/add-reservation', [RequesterController::class, 'addReservation']);
+// Requester - Status Reservation
+Route::get('/requester/status-reservation', [StatusReservationController::class, 'index']);
+Route::post('/requester/status-reservation/get-list', [StatusReservationController::class, 'getList']);
 
 
 Route::get('/warehouse/material', [WarehouseController::class, 'index']);

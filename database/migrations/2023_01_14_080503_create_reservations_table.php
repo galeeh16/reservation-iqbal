@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('developer');
             $table->string('model');
             $table->string('article');
-            $table->string('status')->comment('1 Approve, 2 InApprove, 3 Complete');
+            $table->string('status')->comment('0 Antrian, 1 Approve, 2 InApprove, 3 Complete');
             $table->unsignedBigInteger('user_id');
             $table->dateTime('tanggal_approve_matplan')->nullable();
             $table->dateTime('tanggal_complete_warehouse')->nullable();

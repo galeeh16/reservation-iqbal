@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Requester;
 
 use App\Models\Material;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Models\MaterialRequester;
+use App\Models\ReservationCounter;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class RequesterController extends Controller
@@ -33,7 +36,7 @@ class RequesterController extends Controller
             'material_id' => 'required|string',
             'size' => 'required|string',
             'req_qty' => 'required|numeric',
-            'issue_qty' => 'required|numeric',
+            // 'issue_qty' => 'required|numeric',
             'stage_and_season' => 'required|string',
         ]);
 
@@ -42,7 +45,7 @@ class RequesterController extends Controller
                 'material_id' => $request->material_id,
                 'size' => $request->size,
                 'req_qty' => $request->req_qty,
-                'issue_qty' => $request->issue_qty,
+                'issue_qty' => '0', // gadipake sih
                 'stage_and_season' => $request->stage_and_season,
                 'user_id' => session()->get('id'),
             ]);
@@ -73,5 +76,63 @@ class RequesterController extends Controller
             'stage_and_season' => $request->stage_and_season_edit,
         ]);
         return response()->json(['message' => 'Success update material'], 200);
+    }
+
+    public function addReservation(Request $request)
+    {
+        $this->validate($request, [
+            'section' => 'required|string',
+            'reason' => 'required|string',
+            'category' => 'required|string',
+            'developer' => 'required|string',
+            'model' => 'required|string',
+            'article' => 'required|string',
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+            $user_id = session()->get('id');
+
+            // create reservation counter
+            $res = ReservationCounter::create([
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]);
+            $res_number = 'RES-' . str_pad("$res->id", 6, '0', STR_PAD_LEFT);
+            
+            // create reservation
+            $reservation = Reservation::create([
+                'no_reservation' => $res_number,
+                'tanggal' => date('Y-m-d H:i:s'),
+                'section' => $request->section,
+                'reason' => $request->reason,
+                'category' => $request->category,
+                'developer' => $request->developer,
+                'model' => $request->model,
+                'article' => $request->article,
+                'user_id' => $user_id,
+                'status' => '0'
+            ]);
+            
+            // create 1 reservation has many material
+            // pindahin dari tabel material_requester ke tabel reservation_materials
+            $material_requester = MaterialRequester::select('id', 'material_id')->where('user_id', $user_id)->get();
+            foreach ($material_requester as $row) {
+                DB::table('reservation_materials')->insert([
+                    'reservation_id' => $reservation->id,
+                    'material_id' => $row->material_id
+                ]);
+            }
+
+            // hapus data dari table material_requester
+            MaterialRequester::where('user_id', $user_id)->delete();
+
+            DB::commit();
+            return response()->json(['message' => 'Success Add Reservation'], 200);
+        } catch (\Exception $e) {
+            DB::rollback();
+            throw $e;
+        }
     }
 }

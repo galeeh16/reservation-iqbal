@@ -129,6 +129,7 @@
             },
             success: function(response) {
                 swal.close();
+                $('#code_item').val('');
                 resetFormAddMaterial();
                 getListMaterial();
             },
@@ -167,6 +168,15 @@
         $('#req_qty').val('');
         $('#issue_qty').val('0');
         $('#stage_and_season').val('');
+    }
+    function resetFormAddReservation() {
+        $('p.text-danger').remove();
+        $('.is-invalid').removeClass('is-invalid');
+        $('#section').val('');
+        $('#reason').val('');
+        $('#developer').val('');
+        $('#model').val('');
+        $('#article').val('');
     }
 
     function deleteMaterialById(id) {
@@ -272,6 +282,52 @@
         })
     }
 
+    function addReservation() {
+        $.ajax({
+            url: '{{ url('/requester/add-reservation') }}',
+            type: 'post',
+            headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+            beforeSend: function() {
+                showLoading();
+            },
+            data: {
+                section: $('#section').val(),
+                reason: $('#reason').val(),
+                category: $('[name="category"]:checked').val(),
+                developer: $('#developer').val(),
+                model: $('#model').val(),
+                article: $('#article').val(),
+            },
+            success: function(response) {
+                alertSuccess(response.message);
+                resetFormAddMaterial();
+                resetFormAddReservation();
+                getListMaterial();
+            },
+            error: function(xhr, stat, err) {
+                swal.close();
+                
+                $('p.text-danger').remove();
+                $('.is-invalid').removeClass('is-invalid');
+
+                if (xhr.status == 422) {
+                    $.each(xhr.responseJSON.errors, (key, val) => {
+                        let el = $('#' + key);
+                        let newVal = `<p class="text-danger">${val}</p>`;
+
+                        el
+                        .removeClass('is-invalid')
+                        .addClass(val.length > 0 ? 'is-invalid' : '')
+                        .find('p.text-danger')
+                        .remove();
+                        
+                        el.after(newVal);
+                    });
+                }
+            }
+        });
+    }
+
 
 
     $(document).ready(function() {
@@ -368,7 +424,12 @@
         $('#form-edit-material').on('submit', function(e) {
             e.preventDefault();
             editMaterialById();
-        })
+        });
+
+        $('#form-add-reservation').on('submit', function(e) {
+            e.preventDefault();
+            addReservation();
+        });
 
 
     });

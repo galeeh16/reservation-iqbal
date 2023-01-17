@@ -30,13 +30,13 @@
                 <div class="col-lg-9 col-sm-8">
                     <div class="d-flex" style="gap: 1rem;">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="material_upper" id="material_upper" checked>
+                            <input class="form-check-input" type="radio" name="category" id="material_upper" value="material_upper" checked>
                             <label class="form-check-label" for="material_upper">
                               Material Upper
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="material_upper" id="accesories">
+                            <input class="form-check-input" type="radio" name="category" id="accesories" value="accesories">
                             <label class="form-check-label" for="accesories">
                               Accesories / Bottom
                             </label>
