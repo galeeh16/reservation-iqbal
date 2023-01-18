@@ -5,9 +5,14 @@
 @endsection
 
 @section('content')
+    <div class="mb-3">
+        <div class="mb-2"><a href="{{ url('/home') }}">Add Material</a></div>
+        <div class="mb-2"><a href="{{ url('/requester/status-reservation') }}">Status Reservation</a></div>
+    </div>
+
     <div class="card">
         <div class="card-body">
-            <h5 class="mb-3 card-title">List Reservation Created</h5>
+            <h5 class="mb-3 card-title">List Reservation</h5>
 
             <form method="post" id="form-filter">
                 <div class="mb-5 row">

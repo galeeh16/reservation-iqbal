@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="mb-3">
+        <div class="mb-2"><a href="{{ url('/home') }}">Add Material</a></div>
+        <div class="mb-2"><a href="{{ url('/requester/status-reservation') }}">Status Reservation</a></div>
+    </div>
+
     <div class="card border-0 shadow-sm mb-4">
         <div class="card-body p-4">
             <h5 class="card-title mb-3">Detail Reservation</h5>
