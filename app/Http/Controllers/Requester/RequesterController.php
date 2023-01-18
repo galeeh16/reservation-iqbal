@@ -34,6 +34,7 @@ class RequesterController extends Controller
     {
         $this->validate($request, [
             'material_id' => 'required|string',
+            'code_item' => 'required|string',
             'size' => 'required|string',
             'req_qty' => 'required|numeric',
             // 'issue_qty' => 'required|numeric',
@@ -43,6 +44,7 @@ class RequesterController extends Controller
         try {
             MaterialRequester::create([
                 'material_id' => $request->material_id,
+                'code_item' => $request->code_item,
                 'size' => $request->size,
                 'req_qty' => $request->req_qty,
                 'issue_qty' => '0', // gadipake sih

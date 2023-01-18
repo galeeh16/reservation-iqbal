@@ -1,19 +1,14 @@
-<?php 
+<?php declare(strict_types=1);
 
-namespace App\Http\Controllers\Warehouse;
+namespace App\Http\Controllers\Approval;
 
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
-class ReservationController extends Controller
+class ApprovalController extends Controller 
 {
-    public function index()
-    {
-        return view('warehouse.reservation.index');
-    }
-
     public function getList(Request $request)
     {
         $limit = $request->input('limit') ?? 10;
@@ -23,7 +18,7 @@ class ReservationController extends Controller
             ->when($search, function($query, $value) {
                 $query->where(DB::raw('lower(no_reservation)'), 'like', '%'.$value.'%');
             })
-            ->where('status', '1') // 1 - Approve oleh matplan
+            ->where('status', '0')
             ->paginate($limit)
             ->toArray();
 
@@ -35,22 +30,33 @@ class ReservationController extends Controller
         ], 200);
     }
 
-    public function complete(Request $request)
+    public function approveOrReject(Request $request)
     {
         $this->validate($request, [
             'id' => 'required|string',
+            'type' => 'required|string|in:approve,reject',
         ]);
 
         try {
+            $status = '';
+            $message = '';
+
+            if ($request->type == 'approve') {
+                $status = '1';
+                $message = 'Success approve reservation';
+            } else {
+                $status = '2';
+                $message = 'Success unapprove reservation';
+            }
+
             Reservation::where('id', $request->id)
                         ->update([
-                            'status' => '3',
-                            'tanggal_complete_warehouse' => date('Y-m-d H:i:s')
+                            'status' => $status,
+                            'tanggal_approve_matplan' => date('Y-m-d H:i:s')
                         ]);
-            return response()->json(['message' => 'Success completed reservation'], 200);
+            return response()->json(['message' => $message], 200);
         } catch (\Exception $e) {
             throw $e;
         }
     }
-
 }

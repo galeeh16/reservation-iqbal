@@ -118,7 +118,7 @@
 
         
         <div class="container py-4">
-            <div class="mb-4">
+            {{-- <div class="mb-4">
                 <div>
                     <a href="{{ url('warehouse/material') }}">Menu Warehouse Material</a>
                 </div>
@@ -128,7 +128,7 @@
                 <div>
                     <a href="{{ url('requester/status-reservation') }}">Status Reservation</a>
                 </div>
-            </div>
+            </div> --}}
             @yield('content')
         </div>
     </div>

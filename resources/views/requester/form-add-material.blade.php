@@ -44,7 +44,7 @@
             <div class="mb-3 row">
                 <label class="col-form-label  col-lg-3 col-sm-4">Req Qty</label>
                 <div class="col-lg-9 col-sm-8">
-                    <input type="number" class="form-control" name="req_qty" id="req_qty">
+                    <input type="text" class="form-control" name="req_qty" id="req_qty">
                 </div>
             </div>
             {{-- <div class="mb-3 row">

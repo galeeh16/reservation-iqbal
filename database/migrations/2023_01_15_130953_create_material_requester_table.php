@@ -23,8 +23,9 @@ return new class extends Migration
             
             $table->unsignedInteger('req_qty')->nullable()->default(0);
             $table->unsignedInteger('issue_qty')->nullable()->default(0);
-            $table->string('size');
-            $table->string('stage_and_season');
+            $table->string('code_item')->nullable();
+            $table->string('size')->nullable();
+            $table->string('stage_and_season')->nullable();
             $table->unsignedBigInteger('material_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();

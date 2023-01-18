@@ -116,6 +116,7 @@
             headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
             data: {
                 material_id: $('#material_id').val(),
+                code_item: $('#code_item').val(),
                 description: $('#description').val(),
                 colour: $('#colour').val(),
                 uom: $('#uom').val(),
