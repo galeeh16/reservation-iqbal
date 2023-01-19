@@ -15,8 +15,8 @@
 @section('content')
     <div class="d-flex justify-content-between mb-4">
         <div>
-            <button type="button" class="btn btn-success me-2">APPROVE</button>
-            <button type="button" class="btn btn-danger me-2">UNAPPROVE</button>
+            <button type="button" class="btn btn-success me-2" onclick="approveOrReject('{{$reservation->id}}', 'approve')">APPROVE</button>
+            <button type="button" class="btn btn-danger me-2" onclick="approveOrReject('{{$reservation->id}}', 'reject')">UNAPPROVE</button>
             <button type="button" class="btn btn-dark" onclick="downloadPdf('{{$reservation->no_reservation}}')">DOWNLOAD PDF</button>
         </div>
         <div>
@@ -75,10 +75,10 @@
                         <td>{{ $reservation->article }}</td>
                     </tr>
                     <tr>
-                        <td style="width: 160px;">Remarks</td>
-                        <td style="width: 10px;">:</td>
+                        <td style="width: 160px; vertical-align: top;">Remarks</td>
+                        <td style="width: 10px; vertical-align: top;">:</td>
                         <td>
-                            <textarea spellcheck="false" name="" id="" class="form-control"></textarea>
+                            <textarea spellcheck="false" name="remarks" rows="5" class="form-control" style="resize: none;"></textarea>
                         </td>
                     </tr>
                 </table>
@@ -121,6 +121,33 @@
 
 @section('script')
 <script>
+    function approveOrReject(id, type) {
+        $.ajax({
+            url: '{{ url('approval/material/approve-or-reject') }}',
+            type: 'post',
+            headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+            data: {
+                id: id,
+                type: type
+            },
+            beforeSend: function() {
+                showLoading();
+            },
+            success: function(response) {
+                Swal.fire('', response.message, 'success')
+                .then(val => {
+                    if (val.isConfirmed) {
+                        window.location.reload();
+                    }
+                })
+                
+            },
+            error: function(xhr, stat, err) {
+                alertError();
+            }
+        });
+    }
+
     function downloadPdf(no_reservation) {
         $.ajax({
     		url: '{{ url('approval/detail/pdf/RES-000001') }}',

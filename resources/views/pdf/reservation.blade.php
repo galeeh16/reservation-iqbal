@@ -36,48 +36,48 @@
         <p style="font-size: 16px;"><b>Detail Reservation</b></p>
         <table class="table-detail" style="width: 100%; border-collapse: collapse;">
             <tr>
-                <td style="width: 160px; white-space: nowrap;">No Reservation</td>
-                <td style="width: 10px;">:</td>
+                <td style="width: 160px; white-space: nowrap; vertical-align: top;">No Reservation</td>
+                <td style="width: 10px; vertical-align: top;">:</td>
                 <td>{{ $reservation->no_reservation }}</td>
             </tr>
             <tr>
-                <td style="width: 160px; white-space: nowrap;">Tanggal</td>
-                <td style="width: 10px;">:</td>
+                <td style="width: 160px; white-space: nowrap; vertical-align: top;">Tanggal</td>
+                <td style="width: 10px; vertical-align: top;">:</td>
                 <td>{{ $reservation->tanggal }}</td>
             </tr>
             <tr>
-                <td style="width: 160px; white-space: nowrap;">Section</td>
-                <td style="width: 10px;">:</td>
+                <td style="width: 160px; white-space: nowrap; vertical-align: top;">Section</td>
+                <td style="width: 10px; vertical-align: top;">:</td>
                 <td>{{ $reservation->section }}</td>
             </tr>
             <tr>
-                <td style="width: 160px; white-space: nowrap;">Reason</td>
-                <td style="width: 10px;">:</td>
+                <td style="width: 160px; white-space: nowrap; vertical-align: top;">Reason</td>
+                <td style="width: 10px; vertical-align: top;">:</td>
                 <td>{{ $reservation->reason }}</td>
             </tr>
             <tr>
-                <td style="width: 160px; white-space: nowrap;">Category</td>
-                <td style="width: 10px;">:</td>
+                <td style="width: 160px; white-space: nowrap; vertical-align: top;">Category</td>
+                <td style="width: 10px; vertical-align: top;">:</td>
                 <td>{{ $reservation->category }}</td>
             </tr>
             <tr>
-                <td style="width: 160px; white-space: nowrap;">Developer</td>
-                <td style="width: 10px;">:</td>
+                <td style="width: 160px; white-space: nowrap; vertical-align: top;">Developer</td>
+                <td style="width: 10px; vertical-align: top;">:</td>
                 <td>{{ $reservation->developer }}</td>
             </tr>
             <tr>
-                <td style="width: 160px; white-space: nowrap;">Model</td>
+                <td style="width: 160px; white-space: nowrap; vertical-align: top;">Model</td>
                 <td style="width: 10px;">:</td>
                 <td>{{ $reservation->model }}</td>
             </tr>
             <tr>
-                <td style="width: 160px; white-space: nowrap;">Article</td>
-                <td style="width: 10px;">:</td>
+                <td style="width: 160px; white-space: nowrap; vertical-align: top;">Article</td>
+                <td style="width: 10px; vertical-align: top;">:</td>
                 <td>{{ $reservation->article }}</td>
             </tr>
             <tr>
-                <td style="width: 160px; white-space: nowrap;">Remarks</td>
-                <td style="width: 10px;">:</td>
+                <td style="width: 160px; white-space: nowrap; vertical-align: top;">Remarks</td>
+                <td style="width: 10px; vertical-align: top;">:</td>
                 <td>
                     
                 </td>
