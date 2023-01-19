@@ -5,10 +5,16 @@
 @endsection
 
 @section('content')
-    <div class="mb-3">
-        <div class="mb-2"><a href="{{ url('/home') }}">Material</a></div>
-        <div class="mb-2"><a href="{{ url('/warehouse/reservation') }}">Reservation</a></div>
-    </div>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary mb-3">
+        <ul class="navbar-nav d-flex">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/home') }}">Material</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-primary" href="{{ url('/warehouse/reservation') }}">Reservation</a>
+            </li>
+        </ul>
+    </nav>
 
     <div class="card">
         <div class="card-body">

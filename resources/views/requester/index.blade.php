@@ -1,22 +1,28 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="mb-3">
-        <div class="mb-2"><a href="{{ url('/home') }}">Add Material</a></div>
-        <div class="mb-2"><a href="{{ url('/requester/status-reservation') }}">Status Reservation</a></div>
-    </div>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary mb-3">
+        <ul class="navbar-nav d-flex">
+            <li class="nav-item">
+            <a class="nav-link text-primary" href="{{ url('/home') }}">Add Material</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{{ url('/requester/status-reservation') }}">Status Reservation</a>
+            </li>
+        </ul>
+    </nav>
 
-    <div class="card border-0 shadow-sm mb-4">
-        <div class="card-body p-4">
-            <h5 class="card-title mb-3">Detail Reservation</h5>
+    <div class="card border-0 shadow-sm p-2 mb-4">
+        <div class="card-body">
+            <h5 class="card-title mb-4">Detail Reservation</h5>
 
             @include('requester.form-add-reservation')
         </div>
     </div>
 
-    <div class="card border-0 shadow-sm">
-        <div class="card-body p-4">
-            <h5 class="card-title mb-3">Detail Material</h5>
+    <div class="card border-0 shadow-sm p-2">
+        <div class="card-body">
+            <h5 class="card-title mb-4">Detail Material</h5>
 
             <div class="mb-5">
                 @include('requester.form-add-material')

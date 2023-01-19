@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Approval;
 
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
@@ -58,5 +59,37 @@ class ApprovalController extends Controller
         } catch (\Exception $e) {
             throw $e;
         }
+    }
+
+    public function show($no_reservation)
+    {
+        $reservation = Reservation::where('no_reservation', $no_reservation)->first();
+        
+        $materials = DB::table('materials')
+                        ->join('reservation_materials', 'materials.id', '=', 'reservation_materials.material_id')
+                        ->where('reservation_id', $reservation->id)
+                        ->get();
+
+        return view('approval.show', [
+            'reservation' => $reservation,
+            'materials' => $materials
+        ]);
+    }
+
+    public function downloadPdf($no_reservation)
+    {
+        $reservation = Reservation::where('no_reservation', $no_reservation)->first();
+        
+        $materials = DB::table('materials')
+                        ->join('reservation_materials', 'materials.id', '=', 'reservation_materials.material_id')
+                        ->where('reservation_id', $reservation->id)
+                        ->get();
+
+        $pdf = Pdf::loadView('pdf.reservation', [
+            'reservation' => $reservation,
+            'materials' => $materials
+        ]);
+
+        return $pdf->download('Reservation_'. $reservation->no_reservation .'.pdf');
     }
 }

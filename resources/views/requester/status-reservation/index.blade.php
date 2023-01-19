@@ -5,12 +5,18 @@
 @endsection
 
 @section('content')
-    <div class="mb-3">
-        <div class="mb-2"><a href="{{ url('/home') }}">Add Material</a></div>
-        <div class="mb-2"><a href="{{ url('/requester/status-reservation') }}">Status Reservation</a></div>
-    </div>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary mb-3">
+        <ul class="navbar-nav d-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/home') }}">Add Material</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-primary" href="{{ url('/requester/status-reservation') }}">Status Reservation</a>
+            </li>
+          </ul>
+    </nav>
 
-    <div class="card">
+    <div class="card border-0 shadow-sm p-2">
         <div class="card-body">
             <h5 class="mb-3 card-title">List Reservation</h5>
 

@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="card">
+    <div class="card border-0 shadow-sm p-2">
         <div class="card-body">
             <h5 class="card-title mb-3">Material List</h5>
 
@@ -64,7 +64,10 @@
                 	return meta.row + meta.settings._iDisplayStart + 1;
                 }},
                 { data: 'tanggal', class: 'text-nowrap' },
-                { data: 'no_reservation', class: 'text-nowrap' },
+                { data: 'no_reservation', class: 'text-nowrap', render: function(data, type, row) {
+                    let url = '{{ url('approval/detail') }}' + '/' + row.no_reservation;
+                    return `<a href="${url}" title="Show Detail Reservation">${row.no_reservation}</a>`;
+                }},
                 { data: 'user', class: 'text-nowrap', render: function(data, type, row) {
                     return row.user?.username;
                 }},

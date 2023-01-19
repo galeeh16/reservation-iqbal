@@ -42,8 +42,13 @@ class RequesterController extends Controller
         ]);
 
         try {
+            $m = DB::table('materials')->select('id')->where([
+                'material_code' => $request->code_item,
+                'size' => $request->size
+            ])->first();
+
             MaterialRequester::create([
-                'material_id' => $request->material_id,
+                'material_id' => $m->id,
                 'code_item' => $request->code_item,
                 'size' => $request->size,
                 'req_qty' => $request->req_qty,

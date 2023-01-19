@@ -43,3 +43,5 @@ Route::post('/warehouse/reservation/complete', [ReservationController::class, 'c
 // Approval
 Route::post('/approval/material/get-list', [ApprovalController::class, 'getList']);
 Route::post('/approval/material/approve-or-reject', [ApprovalController::class, 'approveOrReject']);
+Route::get('/approval/detail/{no_reseration}', [ApprovalController::class, 'show']);
+Route::get('/approval/detail/pdf/{no_reseration}', [ApprovalController::class, 'downloadPdf']);

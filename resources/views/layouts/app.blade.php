@@ -56,6 +56,8 @@
         .form-select {
             font-size: 14px !important;
         }
+        .form-select:active,
+        .form-select:focus,
         .form-control:focus,
         .form-control:active,
         .form-control.is-invalid:active,
@@ -83,6 +85,8 @@
             background-color: #dedede; 
         }
     </style>
+
+    @yield('css')
 </head>
 <body class="bg-light">
     
