@@ -53,4 +53,19 @@ class ReservationController extends Controller
         }
     }
 
+    public function show($no_reservation)
+    {
+        $reservation = Reservation::where('no_reservation', $no_reservation)->firstOrFail();
+        
+        $materials = DB::table('materials')
+                        ->join('reservation_materials', 'materials.id', '=', 'reservation_materials.material_id')
+                        ->where('reservation_id', $reservation->id)
+                        ->get();
+
+        return view('warehouse.reservation.show', [
+            'reservation' => $reservation,
+            'materials' => $materials
+        ]);
+    }
+
 }

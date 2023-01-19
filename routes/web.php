@@ -37,6 +37,7 @@ Route::post('/warehouse/material/upload', [WarehouseController::class, 'upload']
 Route::post('/warehouse/material/get-list', [WarehouseController::class, 'getList']);
 
 Route::get('/warehouse/reservation', [ReservationController::class, 'index']);
+Route::get('/warehouse/reservation/{no_reservation}', [ReservationController::class, 'show']);
 Route::post('/warehouse/reservation/get-list', [ReservationController::class, 'getList']);
 Route::post('/warehouse/reservation/complete', [ReservationController::class, 'complete']);
 

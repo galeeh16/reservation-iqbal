@@ -139,8 +139,7 @@
                     if (val.isConfirmed) {
                         window.location.reload();
                     }
-                })
-                
+                });
             },
             error: function(xhr, stat, err) {
                 alertError();

@@ -74,7 +74,10 @@
                 	return meta.row + meta.settings._iDisplayStart + 1;
                 }},
                 { data: 'tanggal' },
-                { data: 'no_reservation' },
+                { data: 'no_reservation', class: 'text-nowrap', render: function(data, type, row) {
+                    let url = '{{ url('/warehouse/reservation') }}' + '/' + row.no_reservation;
+                    return `<a href="${url}" title="Show Detail Reservation">${row.no_reservation}</a>`;
+                }},
                 { data: 'user', class: 'text-nowrap', render: function(data, type, row) {
                     return row.user?.username;
                 }},

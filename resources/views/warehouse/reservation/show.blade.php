@@ -13,12 +13,10 @@
 @endsection
 
 @section('content')
-    <div class="d-flex justify-content-end mb-4">
-        {{-- <div>
-            <button type="button" class="btn btn-success me-2" onclick="approveOrReject('{{$reservation->id}}', 'approve')">APPROVE</button>
-            <button type="button" class="btn btn-danger me-2" onclick="approveOrReject('{{$reservation->id}}', 'reject')">UNAPPROVE</button>
-            <button type="button" class="btn btn-dark" onclick="downloadPdf('{{$reservation->no_reservation}}')">DOWNLOAD PDF</button>
-        </div> --}}
+    <div class="d-flex justify-content-between mb-4">
+        <div>
+            <button type="button" class="btn btn-success btn-complete me-2" onclick="complete('{{ $reservation->id }}')">COMPLETE</button>
+        </div>
         <div>
             <a href="{{ url('/home') }}" class="btn btn-secondary d-flex align-items-center" style="gap: 2px;" >
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
@@ -121,6 +119,30 @@
 
 @section('script')
 <script>
+    function complete(id) {
+        $.ajax({
+            url: '{{ url('warehouse/reservation/complete') }}',
+            type: 'post',
+            headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+            data: {
+                id: id,
+            },
+            beforeSend: function() {
+                showLoading();
+            },
+            success: function(response) {
+                Swal.fire('', response.message, 'success')
+                .then(val => {
+                    if (val.isConfirmed) {
+                        window.location.reload();
+                    }
+                })
+            },
+            error: function(xhr, stat, err) {
+                alertError();
+            }
+        });
+    }
 
     function downloadPdf(no_reservation) {
         $.ajax({
