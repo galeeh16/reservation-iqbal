@@ -25,10 +25,11 @@ Route::post('/requester/add-material', [RequesterController::class, 'addMaterial
 Route::put('/requester/edit-material/{id_material}', [RequesterController::class, 'updateMaterial']);
 Route::delete('/requester/delete-material/{id_material}', [RequesterController::class, 'deleteMaterial']);
 Route::post('/requester/add-reservation', [RequesterController::class, 'addReservation']);
+
 // Requester - Status Reservation
 Route::get('/requester/status-reservation', [StatusReservationController::class, 'index']);
 Route::post('/requester/status-reservation/get-list', [StatusReservationController::class, 'getList']);
-
+Route::get('/requester/status-reservation/{no_reservation}', [StatusReservationController::class, 'show']);
 
 // Warehouse
 Route::get('/warehouse/material', [WarehouseController::class, 'index']);
