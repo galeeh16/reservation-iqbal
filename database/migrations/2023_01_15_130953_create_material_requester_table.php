@@ -21,7 +21,7 @@ return new class extends Migration
             // $table->string('uom');
             // $table->string('status')->nullable();
             
-            $table->unsignedInteger('req_qty')->nullable()->default(0);
+            $table->string('req_qty')->nullable()->default(0);
             $table->unsignedInteger('issue_qty')->nullable()->default(0);
             $table->string('code_item')->nullable();
             $table->string('size')->nullable();
