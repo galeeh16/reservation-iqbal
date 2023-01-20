@@ -78,9 +78,7 @@
             <tr>
                 <td style="width: 160px; white-space: nowrap; vertical-align: top;">Remarks</td>
                 <td style="width: 10px; vertical-align: top;">:</td>
-                <td>
-                    
-                </td>
+                <td style="vertical-align: top;">{{ $reservation->remarks }}</td>
             </tr>
         </table>
     </div>

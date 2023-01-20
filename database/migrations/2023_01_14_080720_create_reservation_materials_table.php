@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('reservation_id');
             $table->unsignedBigInteger('material_id');
             $table->string('stage_and_season')->nullable();
+            $table->string('req_qty')->nullable();
         });
     }
 

@@ -124,11 +124,13 @@ class RequesterController extends Controller
             
             // create 1 reservation has many material
             // pindahin dari tabel material_requester ke tabel reservation_materials
-            $material_requester = MaterialRequester::select('id', 'material_id')->where('user_id', $user_id)->get();
+            $material_requester = MaterialRequester::select('id', 'material_id', 'stage_and_season', 'req_qty')->where('user_id', $user_id)->get();
             foreach ($material_requester as $row) {
                 DB::table('reservation_materials')->insert([
                     'reservation_id' => $reservation->id,
-                    'material_id' => $row->material_id
+                    'material_id' => $row->material_id,
+                    'req_qty' => $row->req_qty,
+                    'stage_and_season' => $row->stage_and_season,
                 ]);
             }
 

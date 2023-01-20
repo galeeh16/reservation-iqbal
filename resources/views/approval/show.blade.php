@@ -78,7 +78,7 @@
                         <td style="width: 160px; vertical-align: top;">Remarks</td>
                         <td style="width: 10px; vertical-align: top;">:</td>
                         <td>
-                            <textarea spellcheck="false" name="remarks" rows="5" class="form-control" style="resize: none;"></textarea>
+                            <textarea spellcheck="false" name="remarks" id="remarks" rows="5" class="form-control" style="resize: none;">{{ $reservation->remarks }}</textarea>
                         </td>
                     </tr>
                 </table>
@@ -128,7 +128,8 @@
             headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
             data: {
                 id: id,
-                type: type
+                type: type,
+                remarks: $('#remarks').val()
             },
             beforeSend: function() {
                 showLoading();

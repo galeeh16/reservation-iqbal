@@ -53,7 +53,8 @@ class ApprovalController extends Controller
             Reservation::where('id', $request->id)
                         ->update([
                             'status' => $status,
-                            'tanggal_approve_matplan' => date('Y-m-d H:i:s')
+                            'tanggal_approve_matplan' => date('Y-m-d H:i:s'),
+                            'remarks' => $request->remarks
                         ]);
             return response()->json(['message' => $message], 200);
         } catch (\Exception $e) {
