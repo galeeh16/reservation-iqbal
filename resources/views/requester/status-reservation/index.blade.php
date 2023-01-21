@@ -8,10 +8,15 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary mb-3">
         <ul class="navbar-nav d-flex">
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('/home') }}">Add Material</a>
+                <a class="nav-link" href="{{ url('/home') }}">Home</a>
             </li>
+            @if (session()->get('role') == '3')
             <li class="nav-item">
-              <a class="nav-link text-primary" href="{{ url('/requester/status-reservation') }}">Status Reservation</a>
+                <a class="nav-link" href="{{ url('/warehouse/reservation') }}">Reservation</a>
+            </li>
+            @endif
+            <li class="nav-item">
+                <a class="nav-link text-primary" href="{{ url('/requester/status-reservation') }}">History Reservation</a>
             </li>
           </ul>
     </nav>

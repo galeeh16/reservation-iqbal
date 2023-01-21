@@ -5,9 +5,20 @@
 @endsection
 
 @section('content')
+    <nav class="navbar navbar-expand-lg bg-body-tertiary mb-3">
+        <ul class="navbar-nav d-flex">
+            <li class="nav-item">
+                <a class="nav-link text-primary" href="{{ url('/home') }}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/requester/status-reservation') }}">History Reservation</a>
+            </li>
+        </ul>
+    </nav>
+
     <div class="card border-0 shadow-sm p-2">
         <div class="card-body">
-            <h5 class="card-title mb-3">Material List</h5>
+            <h5 class="card-title mb-3">Reservation List</h5>
 
             <table id="table" class="table table-bordered table-striped table-hover" style="width: 100%;">
                 <thead>

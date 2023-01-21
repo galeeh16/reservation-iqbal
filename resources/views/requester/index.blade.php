@@ -4,10 +4,10 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary mb-3">
         <ul class="navbar-nav d-flex">
             <li class="nav-item">
-            <a class="nav-link text-primary" href="{{ url('/home') }}">Add Material</a>
+                <a class="nav-link text-primary" href="{{ url('/home') }}">Home</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="{{ url('/requester/status-reservation') }}">Status Reservation</a>
+                <a class="nav-link" href="{{ url('/requester/status-reservation') }}">History Reservation</a>
             </li>
         </ul>
     </nav>
