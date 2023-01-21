@@ -24,7 +24,7 @@
         </ul>
     </nav>
 
-    <div class="card">
+    <div class="card border-0 shadow-sm p-2">
         <div class="card-body">
             <h5 class="card-title mb-3">Material List</h5>
 
